@@ -31,53 +31,60 @@ st.markdown("""
     .main-header {
         font-size: 2.2rem;
         font-weight: 700;
-        color: #1E3A8A;
+        color: #3B82F6;
         margin-bottom: 0.2rem;
     }
     .sub-header {
         font-size: 1.05rem;
-        color: #4B5563;
+        opacity: 0.85;
         margin-bottom: 1.5rem;
     }
-    .metric-card {
-        background-color: #F8FAFC;
-        border: 1px solid #E2E8F0;
-        border-radius: 8px;
-        padding: 1rem;
-        text-align: center;
-    }
     .badge-verified {
-        background-color: #DEF7EC;
-        color: #03543F;
+        background-color: #065F46;
+        color: #ECFDF5;
         padding: 4px 10px;
         border-radius: 9999px;
         font-weight: 600;
         font-size: 0.8rem;
+        display: inline-block;
     }
     .badge-review {
-        background-color: #FEF08A;
-        color: #854D0E;
+        background-color: #854D0E;
+        color: #FEF08A;
         padding: 4px 10px;
         border-radius: 9999px;
         font-weight: 600;
         font-size: 0.8rem;
+        display: inline-block;
     }
     .badge-active {
-        background-color: #E0E7FF;
-        color: #3730A3;
+        background-color: #1E3A8A;
+        color: #DBEAFE;
         padding: 3px 8px;
         border-radius: 6px;
         font-size: 0.75rem;
+        display: inline-block;
     }
     .badge-expired {
-        background-color: #FEE2E2;
-        color: #991B1B;
+        background-color: #991B1B;
+        color: #FEE2E2;
         padding: 3px 8px;
         border-radius: 6px;
         font-size: 0.75rem;
+        display: inline-block;
+    }
+    .badge-type {
+        background-color: #374151;
+        color: #F9FAFB;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        display: inline-block;
     }
     .evidence-quote {
-        background-color: #F1F5F9;
+        background-color: rgba(59, 130, 246, 0.12);
+        color: inherit;
         border-left: 4px solid #3B82F6;
         padding: 10px 14px;
         font-style: italic;
@@ -211,7 +218,7 @@ with tab_directory:
                     st.markdown(
                         f"<span class='{b_verif}'>{s['verification_status']} ({s['confidence_score']}%)</span> "
                         f"<span class='{b_stat}'>Status: {s['status']}</span> "
-                        f"<span style='background:#F3F4F6; padding:3px 8px; border-radius:6px; font-size:0.75rem;'>Type: {s['source_type']}</span>",
+                        f"<span class='badge-type'>Type: {s['source_type']}</span>",
                         unsafe_allow_html=True
                     )
                     st.write("")
