@@ -1,4 +1,4 @@
-# 🎓 Autonomous Scholarship Intelligence Crawler
+# Autonomous Scholarship Intelligence Crawler
 ### Edxso AI Engineer Intern - Assignment 2: Real-World Implementation for Atlas Funding
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
@@ -12,24 +12,24 @@
 
 ---
 
-## 📌 Executive Summary & Evaluation Scorecard
+## Executive Summary & Evaluation Scorecard
 
 This project was built strictly adhering to the assignment requirements: **Accuracy over quantity, verifiable official sources, algorithmic confidence scoring (never LLM guesses), anti-hallucination guarantees, and immutable change tracking.**
 
 | Evaluation Requirement | Minimum Mandated | Built & Delivered | Status |
 | :--- | :--- | :--- | :---: |
-| **Real Scholarships** | 20+ real records | **23 authentic Indian scholarships** | ✅ Exceeded |
-| **Verified Against Primary Sources** | 15+ verified records | **20 verified against official domains** | ✅ Exceeded |
-| **Confidence Score $\ge$ 95.0%** | 10+ records | **20 records with confidence $\ge$ 95%** | ✅ Exceeded |
-| **Source Diversity** | $\ge$ 3 distinct source types | **4 types: Government, University, Corporate CSR, NGO/Trust** | ✅ Exceeded |
-| **Change Detection Examples** | $\ge$ 2 real examples | **3 logged examples (Extension, Grant Increase, Senate Revision)** | ✅ Exceeded |
-| **Expired / Stale Detection** | $\ge$ 2 real examples | **6 detected examples (Passed deadlines, archived cycles)** | ✅ Exceeded |
-| **Free Tools Only** | No paid APIs permitted | **100% Free & Open Source (Python, BeautifulSoup, SQLite, Streamlit)** | ✅ 100% Compliant |
-| **Working Application & UI** | Interactive product output | **Interactive Streamlit Web Dashboard + Rich CLI Demo** | ✅ Delivered |
+| **Real Scholarships** | 20+ real records | **23 authentic Indian scholarships** | Exceeded |
+| **Verified Against Primary Sources** | 15+ verified records | **20 verified against official domains** | Exceeded |
+| **Confidence Score $\ge$ 95.0%** | 10+ records | **20 records with confidence $\ge$ 95%** | Exceeded |
+| **Source Diversity** | $\ge$ 3 distinct source types | **4 types: Government, University, Corporate CSR, NGO/Trust** | Exceeded |
+| **Change Detection Examples** | $\ge$ 2 real examples | **3 logged examples (Extension, Grant Increase, Senate Revision)** | Exceeded |
+| **Expired / Stale Detection** | $\ge$ 2 real examples | **6 detected examples (Passed deadlines, archived cycles)** | Exceeded |
+| **Free Tools Only** | No paid APIs permitted | **100% Free & Open Source (Python, BeautifulSoup, SQLite, Streamlit)** | 100% Compliant |
+| **Working Application & UI** | Interactive product output | **Interactive Streamlit Web Dashboard + Rich CLI Demo** | Delivered |
 
 ---
 
-## 🏛 System Architecture & Lifecycle
+## System Architecture & Lifecycle
 
 ```
                      [ MULTI-CHANNEL DISCOVERY ]
@@ -83,7 +83,7 @@ This project was built strictly adhering to the assignment requirements: **Accur
 
 ---
 
-## 🔬 Core Engineering Innovations
+## Core Engineering Innovations
 
 ### 1. The Verification & Confidence Engine (No Black-Box LLM Guessing)
 The assignment explicitly states:  
@@ -121,7 +121,7 @@ When re-running the crawler (Run 2):
 
 ---
 
-## ⚡ Quickstart & Installation
+## Quickstart & Installation
 
 ### Prerequisites
 - Python 3.10, 3.11, or 3.12
@@ -161,7 +161,7 @@ Runs all 7 test suites validating classification, extraction anti-hallucination 
 
 ---
 
-## 🖥 Web Application Features (`app.py`)
+## Web Application Features (`app.py`)
 
 The Streamlit dashboard fulfills every requirement from Section 10 of the assignment:
 
@@ -189,7 +189,7 @@ The Streamlit dashboard fulfills every requirement from Section 10 of the assign
 
 ---
 
-## 📂 Repository File Structure
+## Repository File Structure
 
 ```
 Scholarship-Intelligence-Crawler/
@@ -226,7 +226,7 @@ Scholarship-Intelligence-Crawler/
 
 ---
 
-## 🗄 Database Schema (`database/schema.sql`)
+## Database Schema (`database/schema.sql`)
 
 The database uses SQLite 3 with strict foreign key constraints and indexed lookup paths:
 - `scholarships`: 34 columns storing Atlas-compliant attributes, fingerprint, confidence breakdown JSON, and timestamps.
@@ -237,7 +237,7 @@ The database uses SQLite 3 with strict foreign key constraints and indexed looku
 
 ---
 
-## 📋 Evaluation Checklist & Verification Commands
+## Evaluation Checklist & Verification Commands
 
 To verify the system independently, run these commands:
 
@@ -251,7 +251,7 @@ To verify the system independently, run these commands:
 
 ---
 
-## 👤 Author
+## Author
 **Ansh Rohilla**  
 Applicant for Edxso AI Engineer Internship (Assignment 2)  
 GitHub: [@ansh-rohilla](https://github.com/ansh-rohilla)
