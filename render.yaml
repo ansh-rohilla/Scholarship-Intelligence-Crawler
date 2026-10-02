@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: scholarship-intelligence-crawler
+    env: python
+    buildCommand: pip install -r requirements.txt && pip install python-docx
+    startCommand: streamlit run app.py --server.port 10000 --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9

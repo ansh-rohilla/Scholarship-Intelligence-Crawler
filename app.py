@@ -87,8 +87,25 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Helpers for full-width components across different Streamlit versions
+import inspect
+def _fw():
+    sig = inspect.signature(st.button).parameters
+    return {"width": "stretch"} if "width" in sig else {"use_container_width": True}
+
+def _fw_df():
+    sig = inspect.signature(st.dataframe).parameters
+    return {"width": "stretch"} if "width" in sig else {"use_container_width": True}
+
 # Initialize Database
 db = Database()
+metrics = db.get_dashboard_metrics()
+
+# Auto-seed if database is empty on fresh cloud deployment
+if metrics["total_discovered"] == 0:
+    engine = CrawlerEngine(db)
+    engine.run_crawl_cycle(run_number=1, apply_changes=False)
+    metrics = db.get_dashboard_metrics()
 
 # Header
 st.markdown('<div class="main-header">🎓 Scholarship Intelligence Engine</div>', unsafe_allow_html=True)
@@ -101,14 +118,14 @@ with st.sidebar:
     st.info("System adheres strictly to: Confidence ≥ 95% = VERIFIED. No blackbox LLM confidence numbers.")
 
     st.subheader("Manual Pipeline Actions")
-    if st.button("🚀 Run Initial Crawl (Run 1)", use_container_width=True, type="primary"):
+    if st.button("🚀 Run Initial Crawl (Run 1)", type="primary", **_fw()):
         with st.spinner("Executing crawl run cycle 1..."):
             engine = CrawlerEngine(db)
             res = engine.run_crawl_cycle(run_number=1, apply_changes=False)
             st.success(f"Run 1 completed! Discovered: {res['discovered_count']}, Verified: {res['verified_count']}")
             st.rerun()
 
-    if st.button("⚡ Simulate Re-Crawl (Run 2: Change Detection)", use_container_width=True):
+    if st.button("⚡ Simulate Re-Crawl (Run 2: Change Detection)", **_fw()):
         with st.spinner("Running re-crawl with updated notices and senate resolutions..."):
             engine = CrawlerEngine(db)
             res = engine.run_crawl_cycle(run_number=2, apply_changes=True)
@@ -129,9 +146,6 @@ with st.sidebar:
         index=0
     )
     min_confidence = st.slider("Minimum Confidence (%)", min_value=0.0, max_value=100.0, value=0.0, step=5.0)
-
-# Fetch Metrics
-metrics = db.get_dashboard_metrics()
 
 # Render Metric Cards (Section 10 Requirement)
 c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
@@ -219,10 +233,10 @@ with tab_directory:
                     btn_c1, btn_c2 = st.columns(2)
                     with btn_c1:
                         if s["official_source_url"]:
-                            st.link_button("🌐 Open Official Primary Source", s["official_source_url"], use_container_width=True)
+                            st.link_button("🌐 Open Official Primary Source", s["official_source_url"], **_fw())
                     with btn_c2:
                         if s["application_url"]:
-                            st.link_button("📝 Open Official Application Portal", s["application_url"], use_container_width=True)
+                            st.link_button("📝 Open Official Application Portal", s["application_url"], **_fw())
 
                     st.markdown("---")
 
@@ -294,7 +308,7 @@ with tab_history:
     else:
         df_changes = pd.DataFrame(recent_changes)
         display_df = df_changes[["scholarship_name", "field_name", "old_value", "new_value", "detected_at", "evidence"]]
-        st.dataframe(display_df, use_container_width=True)
+        st.dataframe(display_df, **_fw_df())
 
 # -----------------------------------------------------------------------------
 # TAB 3: CRAWL RUNS & ORCHESTRATION
@@ -305,7 +319,7 @@ with tab_runs:
     runs = db.get_recent_crawl_runs(limit=10)
     if runs:
         df_runs = pd.DataFrame(runs)
-        st.dataframe(df_runs[["run_number", "started_at", "status", "scholarships_discovered", "scholarships_verified", "scholarships_updated", "scholarships_unchanged", "scholarships_expired", "log_summary"]], use_container_width=True)
+        st.dataframe(df_runs[["run_number", "started_at", "status", "scholarships_discovered", "scholarships_verified", "scholarships_updated", "scholarships_unchanged", "scholarships_expired", "log_summary"]], **_fw_df())
     else:
         st.info("No crawl runs logged yet.")
 

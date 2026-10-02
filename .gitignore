@@ -42,3 +42,7 @@ venv.bak/
 
 # Streamlit
 .streamlit/
+
+# Temporary Office Lock Files
+~$*
+*.tmp
